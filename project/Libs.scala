@@ -1,6 +1,6 @@
 import sbt._
 
-object HadoopVersion {
+object Versions {
 
   val Hadoop = "3.0.0"
   val HBase = "2.1.0"
@@ -20,35 +20,35 @@ object Libs {
 
 object Hadoop {
 
-  val `hadoop-common` = "org.apache.hadoop" % "hadoop-common" % HadoopVersion.Hadoop exclude
+  val `hadoop-common` = "org.apache.hadoop" % "hadoop-common" % Versions.Hadoop exclude
     ("com.fasterxml.jackson.core", "jackson-databind")
 
-  val `hadoop-hdfs` = "org.apache.hadoop" % "hadoop-hdfs" % HadoopVersion.Hadoop exclude
+  val `hadoop-hdfs` = "org.apache.hadoop" % "hadoop-hdfs" % Versions.Hadoop exclude
     ("com.fasterxml.jackson.core", "jackson-databind")
 
-  val `hadoop-auth` = "org.apache.hadoop" % "hadoop-auth" % HadoopVersion.Hadoop exclude
+  val `hadoop-auth` = "org.apache.hadoop" % "hadoop-auth" % Versions.Hadoop exclude
     ("com.fasterxml.jackson.core", "jackson-databind")
 
-  val `hadoop-client` = "org.apache.hadoop" % "hadoop-client" % HadoopVersion.Hadoop exclude
+  val `hadoop-client` = "org.apache.hadoop" % "hadoop-client" % Versions.Hadoop exclude
     ("com.fasterxml.jackson.core", "jackson-databind")
 
   //val `hadoop-core` = "org.apache.hadoop" % "hadoop-core" % "2.6.0-mr1-cdh5.16.1.1" pomOnly()
 }
 
 object Spark {
-  val `spark-core` = "org.apache.spark"  %%  "spark-core"  %  HadoopVersion.Spark excludeAll
+  val `spark-core` = "org.apache.spark"  %%  "spark-core"  %  Versions.Spark excludeAll
     (ExclusionRule(organization = "xerces"), ExclusionRule(organization = "log4j"))
 
-  val `spark-sql` = "org.apache.spark"  %%  "spark-sql"  %  HadoopVersion.Spark
+  val `spark-sql` = "org.apache.spark"  %%  "spark-sql"  %  Versions.Spark
 
   val `commons-io` = "commons-io" % "commons-io" %  "2.6" exclude("commons-logging", "commons-logging") force()
 
   val `spark-avro-3.1.2` = "org.apache.spark" %% "spark-avro" % "3.1.2" // Update to Spark 3.1.2
 
   object TestLibs {
-    val `spark-catalyst-test` = "org.apache.spark"  %%  "spark-catalyst"  %  HadoopVersion.Spark % "test" classifier "tests"
-    val `spark-core-test` = "org.apache.spark"  %% "spark-core"  %  HadoopVersion.Spark % "test" classifier "tests"
-    val `spark-sql-test` = "org.apache.spark"  %%  "spark-sql"  %  HadoopVersion.Spark % "test" classifier "tests"
+    val `spark-catalyst-test` = "org.apache.spark"  %%  "spark-catalyst"  %  Versions.Spark % "test" classifier "tests"
+    val `spark-core-test` = "org.apache.spark"  %% "spark-core"  %  Versions.Spark % "test" classifier "tests"
+    val `spark-sql-test` = "org.apache.spark"  %%  "spark-sql"  %  Versions.Spark % "test" classifier "tests"
   }
 }
 
@@ -73,14 +73,14 @@ object Spark {
 
 object HBase {
 
-  val `hbase-client` = "org.apache.hbase" % "hbase-client" % HadoopVersion.HBase
-  val `hbase-server` = "org.apache.hbase" % "hbase-server" % HadoopVersion.HBase
-  val `hbase-common` = "org.apache.hbase" % "hbase-common" % HadoopVersion.HBase
-  val `hbase-protocol` = "org.apache.hbase" % "hbase-protocol" % HadoopVersion.HBase
-  val `hbase-metrics` = "org.apache.hbase" % "hbase-metrics" % HadoopVersion.HBase
-  val `hbase-metrics-api` = "org.apache.hbase" % "hbase-metrics-api" % HadoopVersion.HBase
-  val `hbase-http` = "org.apache.hbase" % "hbase-http" % HadoopVersion.HBase
-  val `hbase-mapreduce` = "org.apache.hbase" % "hbase-mapreduce" % HadoopVersion.HBase
+  val `hbase-client` = "org.apache.hbase" % "hbase-client" % Versions.HBase
+  val `hbase-server` = "org.apache.hbase" % "hbase-server" % Versions.HBase
+  val `hbase-common` = "org.apache.hbase" % "hbase-common" % Versions.HBase
+  val `hbase-protocol` = "org.apache.hbase" % "hbase-protocol" % Versions.HBase
+  val `hbase-metrics` = "org.apache.hbase" % "hbase-metrics" % Versions.HBase
+  val `hbase-metrics-api` = "org.apache.hbase" % "hbase-metrics-api" % Versions.HBase
+  val `hbase-http` = "org.apache.hbase" % "hbase-http" % Versions.HBase
+  val `hbase-mapreduce` = "org.apache.hbase" % "hbase-mapreduce" % Versions.HBase
 
 }
 

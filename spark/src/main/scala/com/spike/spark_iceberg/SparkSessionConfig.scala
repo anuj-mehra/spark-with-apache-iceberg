@@ -31,7 +31,6 @@ class SparkSessionConfig(jobName: String) {
 
 object SparkSessionConfig {
 
-  println("---------------builing class SparkSessionConfig-------")
   def apply(jobName: String) = new SparkSessionConfig(jobName)
 
 }
