@@ -4,12 +4,12 @@ object HadoopVersion {
 
   val Hadoop = "3.0.0"
   val HBase = "2.1.0"
-  val Spark = "2.4.6"
+  val Spark = "3.1.2"
 }
 
 object Libs {
 
-  val scalaVersion = "2.11.8"
+  val scalaVersion = "2.12.14"
   /*  val `scalatest` = "org.scalatest" %% "scalatest" % "3.0.4"  % "test"
     val `enumeration` = "com.beachane" %% "enumeratum" % "1.5.13"*/
   val `scallop` = "org.rogach" %% "scallop" % "3.5.1"
@@ -36,6 +36,24 @@ object Hadoop {
 }
 
 object Spark {
+  val `spark-core` = "org.apache.spark"  %%  "spark-core"  %  HadoopVersion.Spark excludeAll
+    (ExclusionRule(organization = "xerces"), ExclusionRule(organization = "log4j"))
+
+  val `spark-sql` = "org.apache.spark"  %%  "spark-sql"  %  HadoopVersion.Spark
+
+  val `commons-io` = "commons-io" % "commons-io" %  "2.6" exclude("commons-logging", "commons-logging") force()
+
+  val `spark-avro-3.1.2` = "org.apache.spark" %% "spark-avro" % "3.1.2" // Update to Spark 3.1.2
+
+  object TestLibs {
+    val `spark-catalyst-test` = "org.apache.spark"  %%  "spark-catalyst"  %  HadoopVersion.Spark % "test" classifier "tests"
+    val `spark-core-test` = "org.apache.spark"  %% "spark-core"  %  HadoopVersion.Spark % "test" classifier "tests"
+    val `spark-sql-test` = "org.apache.spark"  %%  "spark-sql"  %  HadoopVersion.Spark % "test" classifier "tests"
+  }
+}
+
+
+/*object Spark {
 
   val `spark-core` = "org.apache.spark"  %%  "spark-core"  %  HadoopVersion.Spark excludeAll
     (ExclusionRule(organization = "xerces"), ExclusionRule(organization = "log4j"))
@@ -51,7 +69,7 @@ object Spark {
     val `spark-core-test` = "org.apache.spark"  %% "spark-core"  %  HadoopVersion.Spark % "test" classifier "tests"
     val `spark-sql-test` = "org.apache.spark"  %%  "spark-sql"  %  HadoopVersion.Spark % "test" classifier "tests"
   }
-}
+}*/
 
 object HBase {
 

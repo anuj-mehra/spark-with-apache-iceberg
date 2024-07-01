@@ -5,7 +5,7 @@ object Dependencies {
   var SparkModule: scala.collection.mutable.Seq[ModuleID] = scala.collection.mutable.Seq(
     Spark.`spark-core`,
     Spark.`spark-sql`,
-    Spark.`spark-avro-2.4`,
+    Spark.`spark-avro-3.1.2`,
     Spark.`commons-io`,
     Spark.TestLibs.`spark-catalyst-test`,
     Spark.TestLibs.`spark-core-test`,
