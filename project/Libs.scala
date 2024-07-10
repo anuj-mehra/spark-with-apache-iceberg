@@ -10,12 +10,17 @@ object Versions {
 object Libs {
 
   val scalaVersion = "2.12.14"
-  /*  val `scalatest` = "org.scalatest" %% "scalatest" % "3.0.4"  % "test"
-    val `enumeration` = "com.beachane" %% "enumeratum" % "1.5.13"*/
+
   val `scallop` = "org.rogach" %% "scallop" % "3.5.1"
   val `scala-lang-library` = "org.scala-lang" % "scala-library" % scalaVersion
   val `scala-lang-compiler` = "org.scala-lang" % "scala-compiler" % scalaVersion
   val `scala-lang-reflect` = "org.scala-lang" % "scala-reflect" % scalaVersion
+}
+
+object TestJars {
+  val `scalatest` = "org.scalatest" %% "scalatest" % "3.2.15"  % Test
+  val `mockito-core` = "org.mockito" % "mockito-core" % "4.8.0" % Test
+  val `scalatest-plus` = "org.scalatestplus" %% "mockito-3-4" % "3.2.10.0" % Test
 }
 
 object Hadoop {
@@ -82,6 +87,11 @@ object HBase {
   val `hbase-http` = "org.apache.hbase" % "hbase-http" % Versions.HBase
   val `hbase-mapreduce` = "org.apache.hbase" % "hbase-mapreduce" % Versions.HBase
 
+  object Tests {
+    val `hbase-server` = "org.apache.hbase" % "hbase-server" % Versions.HBase % Test
+    val `hbase-common` = "org.apache.hbase" % "hbase-common" % Versions.HBase % Test
+    val `hbase-testing-util` = "org.apache.hbase" % "hbase-testing-util" % Versions.HBase % Test
+  }
 }
 
 object Logging{

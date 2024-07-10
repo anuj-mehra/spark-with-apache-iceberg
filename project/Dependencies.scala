@@ -15,6 +15,20 @@ object Dependencies {
     Libs.`scala-lang-library`,
     Libs.`scala-lang-compiler`,
     Libs.`scala-lang-reflect`,
+    TestJars.`mockito-core`,
+    TestJars.`scalatest`,
+    TestJars.`scalatest-plus`,
+    HBase.`hbase-client`,
+    HBase.`hbase-common`,
+    HBase.`hbase-http`,
+    HBase.`hbase-mapreduce`,
+    HBase.`hbase-metrics-api`,
+    HBase.`hbase-metrics`,
+    HBase.`hbase-protocol`,
+    HBase.`hbase-server`,
+    HBase.Tests.`hbase-common`,
+    HBase.Tests.`hbase-server`,
+    HBase.Tests.`hbase-testing-util`,
     Excluded.`log4j`
   )
 
@@ -23,7 +37,7 @@ object Dependencies {
   val excludedJackson: scala.collection.mutable.Seq[ModuleID] = scala.collection.mutable.Seq(
     Excluded.`fasterxml.jackson.core1`,
     Excluded.`fasterxml.jackson.core2`,
-    Excluded.`fasterxml.jackson.core3`,
+    Excluded.`fasterxml.jackson.core3`
   )
 
   val excluded = Seq(Excluded.`slf4j-log4j12`)
