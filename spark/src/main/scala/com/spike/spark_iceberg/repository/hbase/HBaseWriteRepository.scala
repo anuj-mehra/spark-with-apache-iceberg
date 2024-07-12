@@ -32,14 +32,6 @@ class HBaseWriteRepository(@transient conf: Configuration) extends Serializable 
     accumulator.value
   }
 
-  def putAllAtPartitionLevel(inputDf: DataFrame, rowKeyColumnName: String)
-                            (implicit sparkSession: SparkSession): Long ={
-
-    val accumulator = sparkSession.sparkContext.longAccumulator("data-insert-count")
-
-    val connectionConfig = HBaseConnectionConfig(sparkSession, conf)
-    accumulator.value
-  }
 
   /**
    * First Data is deleted and then the data is inserted into the hbase
@@ -101,7 +93,7 @@ object HBaseWriteRepository{
 
   def apply(tableName: String, @transient conf: Configuration): HBaseWriteRepository = {
 
-    val config = HBaseConfiguration.create(conf)
+    val config: Configuration = HBaseConfiguration.create(conf)
     config.set("mapreduce.outputformat.class", "org.apache.hadoop.hbase.mapreduce.TableOutputFormat")
     config.set(TableInputFormat.INPUT_TABLE, tableName)
     config.set(TableOutputFormat.OUTPUT_TABLE, tableName)
