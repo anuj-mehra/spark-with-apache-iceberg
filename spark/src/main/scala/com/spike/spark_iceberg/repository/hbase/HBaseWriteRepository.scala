@@ -7,12 +7,13 @@ import org.apache.hadoop.hbase.HBaseConfiguration
 import org.apache.hadoop.hbase.client.{Delete, Put}
 import org.apache.hadoop.hbase.io.ImmutableBytesWritable
 import org.apache.hadoop.hbase.mapreduce.{TableInputFormat, TableOutputFormat}
+import org.apache.spark.broadcast.Broadcast
 import org.apache.spark.sql.{DataFrame, SparkSession}
 
-class HBaseWriteRepository(@transient conf: Configuration) extends Serializable with LazyLogging{
+class HBaseWriteRepository(@transient conf: Configuration) extends Serializable with LazyLogging {
 
   def putAll(inputDf: DataFrame, rowKeyColumnName: String)
-            (implicit sparkSession: SparkSession): Long ={
+            (implicit sparkSession: SparkSession): Long = {
 
     val accumulator = sparkSession.sparkContext.longAccumulator("data-insert-count")
 
@@ -35,21 +36,28 @@ class HBaseWriteRepository(@transient conf: Configuration) extends Serializable 
 
   /**
    * First Data is deleted and then the data is inserted into the hbase
+   *
    * @param inputDf
    * @param rowKeyColumnName
    * @param deleteCompleteRow
    * @param sparkSession
    * @return
    */
-  def upsertAll(inputDf: DataFrame, rowKeyColumnName: String, deleteCompleteRow: Boolean  = false)
-            (implicit sparkSession: SparkSession): Long ={
+  def upsertAll(inputDf: DataFrame, rowKeyColumnName: String, deleteCompleteRow: Boolean = false)
+               (implicit sparkSession: SparkSession): Long = {
 
     val accumulator = sparkSession.sparkContext.longAccumulator("data-insert-count")
+    val connectionConfig: Broadcast[HBaseConnectionConfig] = HBaseConnectionConfig(sparkSession, conf)
 
     val columns = inputDf.schema.fields
 
-    val rddToSave = inputDf.rdd
-      .map(row => {
+    inputDf.foreachPartition(rows => {
+      lazy val table = HBaseUtils.getTable(connectionConfig.value, conf)
+
+      val insertDataList = new java.util.ArrayList[Put]
+      val deleteDataList = new java.util.ArrayList[Delete]
+
+      rows.foreach(row => {
         accumulator.add(Long.box(1))
         val putObject = new Put(row.getAs[String](rowKeyColumnName).getBytes())
         val deleteObject = new Delete(row.getAs[String](rowKeyColumnName).getBytes())
@@ -62,10 +70,12 @@ class HBaseWriteRepository(@transient conf: Configuration) extends Serializable 
               HBaseUtils.populatePutAndDeleteObject(row, putObject, deleteObject, col.name, col.dataType)
           }
         })
-        (new ImmutableBytesWritable(), putObject)
+        insertDataList.add(putObject)
+        deleteDataList.add(deleteObject)
       })
-
-    rddToSave.saveAsNewAPIHadoopDataset(conf)
+      table.delete(deleteDataList)
+      table.put(insertDataList)
+    })
 
     accumulator.value
   }
@@ -89,7 +99,8 @@ class HBaseWriteRepository(@transient conf: Configuration) extends Serializable 
   }
 
 }
-object HBaseWriteRepository{
+
+object HBaseWriteRepository {
 
   def apply(tableName: String, @transient conf: Configuration): HBaseWriteRepository = {
 
