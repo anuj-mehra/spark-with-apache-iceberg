@@ -5,6 +5,7 @@ import com.typesafe.scalalogging.LazyLogging
 import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.hbase.HBaseConfiguration
 import org.apache.hadoop.hbase.client.{Delete, Put}
+import org.apache.spark.sql.{Row}
 import org.apache.hadoop.hbase.io.ImmutableBytesWritable
 import org.apache.hadoop.hbase.mapreduce.{TableInputFormat, TableOutputFormat}
 import org.apache.spark.broadcast.Broadcast
@@ -51,13 +52,14 @@ class HBaseWriteRepository(@transient conf: Configuration) extends Serializable 
 
     val columns = inputDf.schema.fields
 
-    inputDf.foreachPartition(rows => {
+    inputDf.foreachPartition((rows:Iterator[Row]) => {
+
       lazy val table = HBaseUtils.getTable(connectionConfig.value, conf)
 
       val insertDataList = new java.util.ArrayList[Put]
       val deleteDataList = new java.util.ArrayList[Delete]
 
-      rows.foreach(row => {
+      rows.foreach((row:Row) => {
         accumulator.add(Long.box(1))
         val putObject = new Put(row.getAs[String](rowKeyColumnName).getBytes())
         val deleteObject = new Delete(row.getAs[String](rowKeyColumnName).getBytes())

@@ -20,8 +20,8 @@ class IntegrationTestBase extends  Sequential(new EODTransactionsDataLoaderAppTe
         .replace("bin/winutils.exe", "")
       System.setProperty("hadoop.home.dir", absolutePath)
       val config: Configuration = HBaseConfiguration.create
-      config.set("","")
-      config.setInt(HConstants.REGIONSERVER_PORT,0)
+      config.set("", "")
+      config.setInt(HConstants.REGIONSERVER_PORT, 0)
       hbaseTestUtil = new HBaseTestingUtility(config)
 
       hbaseTestUtil.startMiniCluster()
@@ -29,7 +29,7 @@ class IntegrationTestBase extends  Sequential(new EODTransactionsDataLoaderAppTe
       // Initialize HBase configuration
       //val hbaseConf = hbaseTestUtil.getConfiguration
 
-     /* // Initialize HBase context
+      /* // Initialize HBase context
       val hbaseContext = new HBaseContext(spark.sparkContext, hbaseConf)
 
       // Create an in-memory HBase table
@@ -43,7 +43,7 @@ class IntegrationTestBase extends  Sequential(new EODTransactionsDataLoaderAppTe
         tableDesc.addFamily(new HColumnDescriptor(columnFamily))
         admin.createTable(tableDesc)
       }*/
+    }
   }
-
 
 }
