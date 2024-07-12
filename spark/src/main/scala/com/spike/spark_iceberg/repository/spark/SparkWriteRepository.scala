@@ -1,4 +1,4 @@
-package com.spike.spark_iceberg.repository
+package com.spike.spark_iceberg.repository.spark
 
 class SparkWriteRepository {
 
