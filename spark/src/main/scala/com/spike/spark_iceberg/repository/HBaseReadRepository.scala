@@ -7,9 +7,7 @@ import org.apache.spark.sql.DataFrame
 
 class HBaseReadRepository(@transient conf: Configuration) extends Serializable with LazyLogging{
 
-  def putAll(inputDf: DataFrame, rowKeyColumnName: String): Unit ={
 
-  }
 
 }
 object HBaseReadRepository {

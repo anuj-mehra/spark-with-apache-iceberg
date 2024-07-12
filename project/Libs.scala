@@ -37,7 +37,7 @@ object Hadoop {
   val `hadoop-client` = "org.apache.hadoop" % "hadoop-client" % Versions.Hadoop exclude
     ("com.fasterxml.jackson.core", "jackson-databind")
 
-  //val `hadoop-core` = "org.apache.hadoop" % "hadoop-core" % "2.6.0-mr1-cdh5.16.1.1" pomOnly()
+  val `hadoop-core` = "org.apache.hadoop" % "hadoop-core" % "2.6.0-mr1-cdh5.16.1.1" pomOnly()
 }
 
 object Spark {
