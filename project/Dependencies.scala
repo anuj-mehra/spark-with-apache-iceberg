@@ -31,9 +31,14 @@ object Dependencies {
     HBase.`hbase-metrics`,
     HBase.`hbase-protocol`,
     HBase.`hbase-server`,
+    HBase.Tests.`hbase-testing-util`,
     HBase.Tests.`hbase-common`,
     HBase.Tests.`hbase-server`,
-    HBase.Tests.`hbase-testing-util`,
+    HBase.Tests.`hadoop-hdfs`,
+    HBase.Tests.`hbase-hadoop-compat`,
+    HBase.Tests.`hbase-hadoop2-compat-util`,
+    HBase.Tests.`hbase-mapreduce-tests`,
+    HBase.Tests.`hbase-zookeeper-tests`,
     Excluded.`log4j`
   )
 

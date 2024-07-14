@@ -88,9 +88,14 @@ object HBase {
   val `hbase-mapreduce` = "org.apache.hbase" % "hbase-mapreduce" % Versions.HBase
 
   object Tests {
-    val `hbase-server` = "org.apache.hbase" % "hbase-server" % Versions.HBase % Test
-    val `hbase-common` = "org.apache.hbase" % "hbase-common" % Versions.HBase % Test
+    val `hbase-server` = "org.apache.hbase" % "hbase-server" % Versions.HBase % Test //classifier "tests"
+    val `hbase-common` = "org.apache.hbase" % "hbase-common" % Versions.HBase % Test //classifier "tests"
     val `hbase-testing-util` = "org.apache.hbase" % "hbase-testing-util" % Versions.HBase % Test
+    val `hbase-zookeeper-tests` = "org.apache.hbase" % "hbase-zookeeper" % Versions.HBase % Test //classifier "tests"
+    val `hadoop-hdfs` = "org.apache.hadoop" % "hadoop-hdfs" % Versions.Hadoop % Test //classifier "tests"
+    val `hbase-hadoop-compat` = "org.apache.hbase" % "hbase-hadoop-compat" % Versions.HBase % Test //classifier "tests"
+    val `hbase-hadoop2-compat-util` = "org.apache.hbase" % "hbase-hadoop2-compat" % Versions.HBase % Test //classifier "tests"
+    val `hbase-mapreduce-tests` = "org.apache.hbase" % "hbase-mapreduce¡" % Versions.HBase % Test //classifier "tests"
   }
 }
 

@@ -5,6 +5,8 @@ import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.hbase.{HBaseConfiguration, HBaseTestingUtility, HConstants}
 import org.scalatest.{BeforeAndAfterAll, Sequential}
 
+import java.nio.file.Paths
+
 class IntegrationTestBase extends  Sequential(new EODTransactionsDataLoaderAppTest) with BeforeAndAfterAll {
 
   // Initialize HBaseTestingUtility
@@ -12,38 +14,27 @@ class IntegrationTestBase extends  Sequential(new EODTransactionsDataLoaderAppTe
 
   override def beforeAll(): Unit = {
     super.beforeAll()
+    val projectBaseDir = Paths.get("").toAbsolutePath.toString
+    println("projectBaseDir==>" + projectBaseDir)
 
     try {
-      val absolutePath = getClass
-        .getResource("/hadoop/bin/winutils.exe")
-        .getPath
-        .replace("bin/winutils.exe", "")
-      System.setProperty("hadoop.home.dir", absolutePath)
-      val config: Configuration = HBaseConfiguration.create
-      config.set("", "")
-      config.setInt(HConstants.REGIONSERVER_PORT, 0)
-      hbaseTestUtil = new HBaseTestingUtility(config)
+      println("absolutePath==>" + s"${projectBaseDir}/spark/src/test/resources/hadoop.bin/winutils.exe")
 
+      System.setProperty("hadoop.home.dir", s"${projectBaseDir}/spark/src/test/resources/hadoop.bin/")
+
+      /*val config: Configuration = HBaseConfiguration.create
+      config.set("mapreduce.outputformat.class", "org.apache.hadoop.hbase.mapreduce.TableOutputFormat")
+      config.setInt(HConstants.REGIONSERVER_PORT, 0)
+      hbaseTestUtil = new HBaseTestingUtility(config)*/
+      hbaseTestUtil = new HBaseTestingUtility()
       hbaseTestUtil.startMiniCluster()
 
-      // Initialize HBase configuration
-      //val hbaseConf = hbaseTestUtil.getConfiguration
-
-      /* // Initialize HBase context
-      val hbaseContext = new HBaseContext(spark.sparkContext, hbaseConf)
-
-      // Create an in-memory HBase table
-      val tableName = TableName.valueOf("test_table")
-      val columnFamily = "cf"
-
-      val connection = ConnectionFactory.createConnection(hbaseConf)
-      val admin = connection.getAdmin
-      if (!admin.tableExists(tableName)) {
-        val tableDesc = new HTableDescriptor(tableName)
-        tableDesc.addFamily(new HColumnDescriptor(columnFamily))
-        admin.createTable(tableDesc)
-      }*/
     }
+  }
+
+  override def afterAll(): Unit = {
+    super.afterAll()
+    hbaseTestUtil.shutdownMiniCluster()
   }
 
 }
