@@ -39,6 +39,7 @@ object Dependencies {
     HBase.Tests.`hbase-hadoop2-compat-util`,
     HBase.Tests.`hbase-mapreduce-tests`,
     HBase.Tests.`hbase-zookeeper-tests`,
+    HBase.Tests.`hadoop-common`,
     Excluded.`log4j`
   )
 

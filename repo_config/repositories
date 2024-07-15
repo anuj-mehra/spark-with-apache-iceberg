@@ -4,3 +4,5 @@
     scallop-repo: https://mvnrepository.com/
     hadoop-repo: https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-core/
     cloudera-repo: https://repository.cloudera.com/artifactory/cloudera-repos/
+    github-com: https://github.com/sbt/sbt-native-packager/
+    typesafe-com: https://repo.typesafe.com/typesafe/releases/
