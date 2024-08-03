@@ -15,6 +15,7 @@ object Dependencies {
     Hadoop.`hadoop-common`,
     Hadoop.`hadoop-core`,
     Hadoop.`hadoop-hdfs`,
+    Hadoop.`hadoop-hdfs-client`,
     Common.`typesafe-config`,
     Libs.`scallop`,
     Libs.`scala-lang-library`,

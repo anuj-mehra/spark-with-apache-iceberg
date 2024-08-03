@@ -2,7 +2,7 @@ import sbt._
 
 object Versions {
 
-  val Hadoop = "3.0.0"
+  val Hadoop = "3.2.0"
   val HBase = "2.1.0"
   val Spark = "3.1.2"
 }
@@ -29,6 +29,9 @@ object Hadoop {
     ("com.fasterxml.jackson.core", "jackson-databind")
 
   val `hadoop-hdfs` = "org.apache.hadoop" % "hadoop-hdfs" % Versions.Hadoop exclude
+    ("com.fasterxml.jackson.core", "jackson-databind")
+
+  val `hadoop-hdfs-client` = "org.apache.hadoop" % "hadoop-hdfs-client" % Versions.Hadoop exclude
     ("com.fasterxml.jackson.core", "jackson-databind")
 
   val `hadoop-auth` = "org.apache.hadoop" % "hadoop-auth" % Versions.Hadoop exclude
