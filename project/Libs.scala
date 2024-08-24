@@ -116,6 +116,11 @@ object Common {
   val `typesafe-config` = "com.typesafe" % "config" % "1.3.2"
 }
 
+object Yaml {
+  val `yaml-parser` = "net.jcazevedo" %% "moultingyaml" % "0.4.0" excludeAll (ExclusionRule(organization="org.yaml"))
+  val `snakeyaml` = "org.yaml" % "snakeyaml" % "2.0"
+}
+
 object Excluded {
   val `slf4j-log4j12` = "org.slf4j" % "slf4j-log4j12"
   val `fasterxml.jackson.core1` = "com.fasterxml.jackson.core" % "jackson-annotations" % "2.9.2"

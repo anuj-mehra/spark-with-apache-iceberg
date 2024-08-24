@@ -41,6 +41,8 @@ object Dependencies {
     HBase.Tests.`hbase-mapreduce-tests`,
     HBase.Tests.`hbase-zookeeper-tests`,
     HBase.Tests.`hadoop-common`,
+    Yaml.`yaml-parser`,
+    Yaml.`snakeyaml`,
     Excluded.`log4j`
   )
 

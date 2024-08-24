@@ -1,7 +1,7 @@
 // scalastyle:off
 package com.spike.spark_iceberg.loader
 
-import com.spike.spark_iceberg.core.ApplicationConf
+import com.spike.spark_iceberg.core.{ApplicationConf, CredentialProvider}
 import com.spike.spark_iceberg.{SparkCommandLineOptions, SparkSessionConfig}
 import org.apache.spark.sql.SparkSession
 
@@ -16,12 +16,14 @@ object EODTransactionsDataLoaderApp extends App with Serializable{
   val busDate = commandLineOptions.busDate.toOption.get
   val ymlFilePath = commandLineOptions.ymlFilePath.toOption.get
 
-  val applicationConf = new ApplicationConf(ppCode, busDate, configFile)
+  val applicationConf: ApplicationConf = new ApplicationConf(ppCode, busDate, configFile)
 
   println(s"configFile => ${configFile}")
   println(s"ppCode => ${ppCode}")
   println(s"busDate => ${busDate}")
   println(s"ymlFilePath => ${ymlFilePath}")
+
+  val tokenizerPassword = new CredentialProvider().getPassword(applicationConf.env, "tokenizer")
 
   implicit val sparkSession =
     SparkSessionConfig(s"EODTransactionsDataLoaderApp-${ppCode}-${busDate}", applicationConf.env).get

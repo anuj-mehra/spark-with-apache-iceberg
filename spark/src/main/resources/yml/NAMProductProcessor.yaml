@@ -1,0 +1,30 @@
+job_metadata:
+  tables:
+    - domain: position
+      sourceFileName:
+        - File: hive_tbl_1
+          Colums: col1, col2
+        - File: hive_tbl_2
+          Colums: col3, col4
+        - File: hive_tbl_3
+          Colums: col5, col6
+      destinationTableName:
+        - File: position_main
+          Colums: acct_key
+        - File: position_error
+          Columns: acct_key
+
+
+    - domain: transaction
+        sourceFileName:
+          - File: hive_tbl_1
+            Colums: col1, col2
+          - File: hive_tbl_2
+            Colums: col3, col4
+          - File: hive_tbl_3
+            Colums: col5, col6
+        destinationTableName:
+          - File: position_main
+            Colums: acct_key
+          - File: position_error
+            Columns: acct_key

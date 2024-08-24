@@ -6,3 +6,5 @@
     cloudera-repo: https://repository.cloudera.com/artifactory/cloudera-repos/
     github-com: https://github.com/sbt/sbt-native-packager/
     typesafe-com: https://repo.typesafe.com/typesafe/releases/
+    moultingyaml: https://mvnrepository.com/artifact/net.jcazevedo/moultingyaml
+    snakeyaml: https://mvnrepository.com/artifact/org.yaml/snakeyaml

@@ -1,0 +1,6 @@
+<configuration>
+    <property>
+        <name>hadoop.security.credential.provider.path</name>
+        <value>jceks://hdfs${HDFS_DIR}/my_jceks_file.jceks</value>
+    </property>
+</configuration>
