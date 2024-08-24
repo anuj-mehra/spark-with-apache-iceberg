@@ -22,11 +22,11 @@ class IntegrationTestBase extends  Sequential(new EODTransactionsDataLoaderAppTe
 
       System.setProperty("hadoop.home.dir", s"${projectBaseDir}/spark/src/test/resources/hadoop.bin/")
 
-      /*val config: Configuration = HBaseConfiguration.create
+      val config: Configuration = HBaseConfiguration.create
       config.set("mapreduce.outputformat.class", "org.apache.hadoop.hbase.mapreduce.TableOutputFormat")
       config.setInt(HConstants.REGIONSERVER_PORT, 0)
-      hbaseTestUtil = new HBaseTestingUtility(config)*/
-      hbaseTestUtil = new HBaseTestingUtility()
+      hbaseTestUtil = new HBaseTestingUtility(config)
+      //hbaseTestUtil = new HBaseTestingUtility()
       hbaseTestUtil.startMiniCluster()
 
     }

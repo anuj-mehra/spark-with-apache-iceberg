@@ -918,7 +918,7 @@ public class DFSUtil {
     }
 
     public static KeyProviderCryptoExtension createKeyProviderCryptoExtension(Configuration conf) throws IOException {
-        KeyProvider keyProvider = DFSUtilClient.createKeyProvider(conf);
+        KeyProvider keyProvider = null;//DFSUtilClient.createKeyProvider(conf);
         if (keyProvider == null) {
             return null;
         } else {

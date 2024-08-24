@@ -33,6 +33,7 @@ lazy val `spark` = project
     assemblySettings
   )
 
+
 lazy val assemblySettings = Seq(
   test in assembly := {},
   assemblyJarName in assembly := s"spark-with-apache-iceberg-${version.value}.jar",

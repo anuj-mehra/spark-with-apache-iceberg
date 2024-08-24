@@ -25,13 +25,9 @@ class SparkWriteRepository extends Serializable with LazyLogging {
   def writeParquetOptimizedPartitions(inputDf: DataFrame, path: String): Unit = {
     val numOfPartitions = this.optimizedNumberOfPartitions(inputDf)
     inputDf.repartition(numOfPartitions).write.mode(SaveMode.Overwrite).parquet(path)
-
   }
 
-  def writeCSVFile(inputDf: DataFrame, path: String): Unit = {
 
-
-  }
   private def optimizedNumberOfPartitions(df: DataFrame): Int = {
     val blockSize = DEFAULT_BLOCK_SIZE
     var noOfPartfiles: Int = 1
