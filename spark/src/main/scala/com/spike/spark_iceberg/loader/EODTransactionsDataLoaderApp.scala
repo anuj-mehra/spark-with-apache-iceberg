@@ -2,6 +2,7 @@
 package com.spike.spark_iceberg.loader
 
 import com.spike.spark_iceberg.core.{ApplicationConf, CredentialProvider}
+import com.spike.spark_iceberg.repository.hbase.{HBaseReadRepository, HBaseWriteRepository}
 import com.spike.spark_iceberg.{SparkCommandLineOptions, SparkSessionConfig}
 import org.apache.spark.sql.SparkSession
 
@@ -33,7 +34,8 @@ object EODTransactionsDataLoaderApp extends App with Serializable{
   println("--exiting EODTransactionsDataLoaderApp---")
 }
 
-class EODTransactionsDataLoaderApp extends App with Serializable{
+class EODTransactionsDataLoaderApp(hbaseReadRepo: HBaseReadRepository,
+                                   hbaseWriteRepo: HBaseWriteRepository) extends App with Serializable{
 
   def process(implicit sparkSession: SparkSession): Unit = {
     val data = List(("1", "a"), ("2", "b"))
