@@ -19,4 +19,6 @@ class EODTransactionsDataLoaderAppTest extends SparkTest with MockitoSugar {
     implicit val sparkSession = spark
     obj.process(sparkSession)
   }
+
+  private def hbaseConfig(tableName)
 }

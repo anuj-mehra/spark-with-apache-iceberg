@@ -4,6 +4,7 @@ package com.spike.spark_iceberg.loader
 import com.spike.spark_iceberg.core.{ApplicationConf, CredentialProvider}
 import com.spike.spark_iceberg.repository.hbase.{HBaseReadRepository, HBaseWriteRepository}
 import com.spike.spark_iceberg.{SparkCommandLineOptions, SparkSessionConfig}
+import org.apache.hadoop.hbase.HBaseConfiguration
 import org.apache.spark.sql.SparkSession
 
 object EODTransactionsDataLoaderApp extends App with Serializable{
@@ -29,7 +30,13 @@ object EODTransactionsDataLoaderApp extends App with Serializable{
   implicit val sparkSession =
     SparkSessionConfig(s"EODTransactionsDataLoaderApp-${ppCode}-${busDate}", applicationConf.env).get
 
-  val obj = new EODTransactionsDataLoaderApp
+  val hbaseConf = HBaseConfiguration.create()
+
+  val sampleHBaseReadRepo = HBaseReadRepository("schema:positions", hbaseConf)
+  val sampleHBaseWriteRepo = HBaseWriteRepository("schema:positions", hbaseConf)
+
+  val obj = new EODTransactionsDataLoaderApp(sampleHBaseReadRepo, sampleHBaseWriteRepo)
+
   obj.process(sparkSession)
   println("--exiting EODTransactionsDataLoaderApp---")
 }
