@@ -52,11 +52,15 @@ set +e
 
   export SPARK_KAFKA_BERSION="0.10"
 
+  DECRYPTED_JCEKS_PASSWORD="this is the jceks file password"
+
   spark-submit --name $JOBNAME --class RUNNING_CLASS --master yarn --queue YARN_QUEUE --deploy-mode cluster ${DRIVER_MEMORY} \
     ${EXECUTOR_MEMORY} ${EXECUTOR_CORES} ${NUM_EXECUTORS} ${SPARK_KRYO_BUFFER_MAX} ${SPARK_RPC_MESSAGE_MAXSIZE} ${DRIVER_OVERHEAD} ${EXECUTOR_OVERHEAD} \
     ${SPARK_DYNAMIC_ALLOCATION_ENABLED} ${SPARK_DYNAMIC_MAX_EXECUTOR} \
-    ${SPARK_JOB_MAX_ATTEMPTS}
+    ${SPARK_JOB_MAX_ATTEMPTS} \
     --conf spark.kryo.referenceTracking=false \
+    --conf spark.yarn.appMasterEnv.HADOOP_CREDSTORE_PASSWORD="${DECRYPTED_JCEKS_PASSWORD}" \
+    --conf spark.executorEnv.HADOOP_CREDSTORE_PASSWORD="${DECRYPTED_JCEKS_PASSWORD}" \
     --conf spark.driver.maxResultSize=2048MB \
     --conf spark.yarn.submit.waitAppCompletion=false \
     --conf spark.streaming.kafka.maxRatePerPartition="${TRANSFORM_MAX_RATE_PER_PARTITION}" \

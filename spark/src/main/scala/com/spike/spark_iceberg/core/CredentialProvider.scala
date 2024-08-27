@@ -5,6 +5,7 @@ import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.Path
 
 
+// DECRYPTED_JCEKS_PASSWORD set in shell scrupt is used as password for the jceks file.
 class CredentialProvider extends Serializable{
 
   def getPassword(envName: String, credStoreKey: String): String = {

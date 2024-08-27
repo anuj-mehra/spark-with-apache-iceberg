@@ -17,12 +17,10 @@ import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.catalyst.encoders.RowEncoder
 import org.apache.spark.sql.catalyst.expressions.GenericRowWithSchema
 import org.apache.spark.sql.{DataFrame, Row, SparkSession}
-import org.apache.spark.sql.types.{ArrayType, CalendarIntervalType, DataType, DataTypes, LongType, MapType, NullType, ObjectType, StringType, StructField, StructType}
+import org.apache.spark.sql.types.{DataType, DataTypes, StructField, StructType}
 
 import java.util.Base64
 import scala.collection.mutable
-import scala.collection.mutable.ListBuffer
-
 
 class HBaseReadRepository(@transient conf: Configuration)(implicit sparkSession: SparkSession)
   extends Serializable with LazyLogging{
