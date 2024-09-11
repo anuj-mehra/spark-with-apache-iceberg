@@ -41,6 +41,7 @@ object Dependencies {
     HBase.Tests.`hbase-mapreduce-tests`,
     HBase.Tests.`hbase-zookeeper-tests`,
     HBase.Tests.`hadoop-common`,
+    // Avro.`spark-avro`, // Check if this is required or not? Only added for avsc generator.
     Yaml.`yaml-parser`,
     Yaml.`snakeyaml`,
     Excluded.`log4j`

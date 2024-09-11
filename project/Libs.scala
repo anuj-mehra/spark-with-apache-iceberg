@@ -103,6 +103,9 @@ object HBase {
   }
 }
 
+object Avro{
+  val `spark-avro` = "org.apache.avro" % "avro" % "1.11.2" // check if this is required or not.
+}
 object Logging{
 
   val `scala-logging` = "com.typesafe.scala-logging"  %% "scala-logging" % "3.7.2"
