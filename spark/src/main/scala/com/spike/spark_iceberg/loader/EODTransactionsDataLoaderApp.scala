@@ -42,7 +42,7 @@ object EODTransactionsDataLoaderApp extends App with Serializable{
 }
 
 class EODTransactionsDataLoaderApp(hbaseReadRepo: HBaseReadRepository,
-                                   hbaseWriteRepo: HBaseWriteRepository) extends App with Serializable{
+                                   hbaseWriteRepo: HBaseWriteRepository)  extends Serializable{
 
   def process(implicit sparkSession: SparkSession): Unit = {
     val data = List(("1", "a"), ("2", "b"))
