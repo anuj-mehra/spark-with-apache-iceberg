@@ -7,5 +7,5 @@ import org.apache.spark.sql.SparkSession
 class MetaFileConfig(commandLineOptions: FileValidationCommandLineOptions,
                      sparkReader: SparkReadRepository)(implicit sparkSession: SparkSession) {
 
-  lazy val metaFileDf: DataFrame = sparkReader.read
+  //lazy val metaFileDf: DataFrame = sparkReader.read
 }

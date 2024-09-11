@@ -1,3 +1,4 @@
+/*
 package com.spike.spark_iceberg.yml
 
 import net.jcazevedo.moultingyaml._
@@ -17,3 +18,4 @@ class YamlProtocol extends DefaultYamlProtocol{
 
   }
 }
+*/

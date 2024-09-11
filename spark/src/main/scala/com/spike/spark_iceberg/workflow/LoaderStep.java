@@ -1,4 +1,6 @@
 package com.spike.spark_iceberg.workflow;
 
-public interface LoaderStep<I> extends ETLStep<I, Void> {
+import scala.Unit;
+
+public interface LoaderStep<I> extends ETLStep<I, Unit> {
 }

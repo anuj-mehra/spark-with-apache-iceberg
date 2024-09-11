@@ -1,4 +1,4 @@
-// scalastyle:off
+/*// scalastyle:off
 package com.spike.spark_iceberg.yml
 
 import java.nio.file.{Files, Path, Paths}
@@ -23,4 +23,4 @@ object YamlReader {
   private def toPath(resourcePath: String): Path = {
     Paths.get(resourcePath)
   }
-}
+}*/

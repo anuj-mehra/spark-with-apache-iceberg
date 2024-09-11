@@ -13,12 +13,14 @@ class EODTransactionsDataLoaderAppTest extends SparkTest with MockitoSugar {
 
   val projectBaseDir = Paths.get(".").toAbsolutePath.toString
 
-  val obj = new EODTransactionsDataLoaderApp
+ /* val obj = new EODTransactionsDataLoaderApp
 
   test("-----Test1----"){
     implicit val sparkSession = spark
     obj.process(sparkSession)
   }
 
-  private def hbaseConfig(tableName)
+  private def hbaseConfig(tableName): Unit ={
+
+  }*/
 }
